@@ -4,304 +4,737 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MindFlux Diagnostics | Remote EEG Interpretation</title>
+  <meta name="description" content="Board-certified epileptologist offering expert remote EEG interpretation for hospitals, neurology practices, and EEG labs.">
   <style>
-    body {
+    :root {
+      --bg: #050816;
+      --bg-alt: #0d1220;
+      --accent: #14b8a6;
+      --accent-soft: rgba(20, 184, 166, 0.1);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --card-bg: #0b1020;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #020617;
-      color: #e5e7eb;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
       line-height: 1.6;
-    }
-
-    header {
-      padding: 1.2rem 1.5rem;
-      border-bottom: 1px solid #1f2937;
-      background: #020617;
-      position: sticky;
-      top: 0;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 1.5rem;
-    }
-
-    .logo {
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-    }
-
-    .tagline {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-    }
-
-    .hero {
-      padding: 3rem 1.5rem 2.5rem;
-      text-align: left;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 2.6rem);
-      margin-bottom: 0.75rem;
-    }
-
-    .hero p {
-      max-width: 34rem;
-      color: #9ca3af;
-      font-size: 0.98rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .highlight {
-      color: #22c55e;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .btn-primary {
-      background: #22c1c3;
-      color: #020617;
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      border: none;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .btn-secondary {
-      border-radius: 999px;
-      border: 1px solid #4b5563;
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: #e5e7eb;
-    }
-
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.8rem;
-      font-size: 0.78rem;
-    }
-
-    .pill {
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid #374151;
-      color: #9ca3af;
-    }
-
-    section {
-      padding: 1.5rem;
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-text {
-      color: #9ca3af;
-      font-size: 0.95rem;
-      max-width: 42rem;
-      margin-bottom: 1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .card {
-      border-radius: 0.9rem;
-      border: 1px solid #111827;
-      background: #020617;
-      padding: 1rem 1rem 1.1rem;
-      font-size: 0.9rem;
-    }
-
-    .card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .card p {
-      color: #9ca3af;
-      font-size: 0.9rem;
-    }
-
-    ul {
-      margin: 0.4rem 0 0;
-      padding-left: 1.1rem;
-      color: #9ca3af;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      padding: 1.5rem;
-      border-top: 1px solid #1f2937;
-      text-align: center;
-      font-size: 0.78rem;
-      color: #6b7280;
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
 
-    @media (max-width: 640px) {
-      header, .hero, section, footer {
-        padding-inline: 1.1rem;
+    header {
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(to right, rgba(2, 6, 23, 0.9), rgba(15, 23, 42, 0.9));
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #22c1c3, #2f80ed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(34, 193, 195, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: inherit;
+      border: 1px solid rgba(15, 23, 42, 0.5);
+    }
+
+    .logo-wave {
+      width: 70%;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #e5e7eb, #a5b4fc);
+      box-shadow: 0 0 6px rgba(226, 232, 240, 0.8);
+      transform: translateY(0);
+    }
+
+    .logo-text-main {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(20, 184, 166, 0.6);
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2rem 1.25rem 3rem;
+      border-radius: 1.75rem;
+      background: radial-gradient(circle at top left, rgba(20, 184, 166, 0.06), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.15), #020617 80%);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+      margin-bottom: 3rem;
+    }
+
+    .hero-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-weight: 650;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, #a5b4fc, #22c1c3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 32rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-bullets {
+      display: grid;
+      gap: 0.4rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-bullets span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--muted);
+    }
+
+    .hero-bullets .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(20, 184, 166, 0.7);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #22c1c3, #6366f1);
+      color: #020617;
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-outline {
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-outline-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+    }
+
+    .hero-contact {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .hero-contact a {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Right side hero (card) */
+    .hero-card {
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.25), rgba(15, 23, 42, 1) 55%);
+      border-radius: 1.4rem;
+      padding: 1.7rem 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background-image: radial-gradient(circle at 50% 0, rgba(148, 163, 184, 0.08) 0, transparent 60%);
+      pointer-events: none;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .timeline {
+      border-radius: 0.9rem;
+      background: rgba(15, 23, 42, 0.85);
+      padding: 0.75rem 0.9rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      margin-bottom: 1.1rem;
+      font-size: 0.8rem;
+    }
+
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed rgba(31, 41, 55, 0.9);
+    }
+
+    .timeline-row:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-label {
+      color: var(--muted);
+    }
+
+    .timeline-value {
+      font-weight: 500;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.12);
+      color: #bbf7d0;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      margin-top: 0.9rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.7);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-heading {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.3rem;
+      max-width: 40rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      padding: 1rem 1rem 1.1rem;
+      font-size: 0.85rem;
+    }
+
+    .card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .list li::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 0.4rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: radial-gradient(circle, rgba(148, 163, 184, 0.5), transparent 70%);
+      margin: 2.5rem 0 2rem;
+    }
+
+    /* Contact */
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .contact-box {
+      background: radial-gradient(circle at top, rgba(20, 184, 166, 0.08), rgba(15, 23, 42, 1) 65%);
+      padding: 1.5rem;
+      border-radius: 1.2rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.85rem;
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-email {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.6rem;
+    }
+
+    .contact-list {
+      margin-top: 0.5rem;
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .contact-list li::before {
+      content: "–";
+      margin-right: 0.3rem;
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 1.25rem 2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      background: radial-gradient(circle at bottom, rgba(15, 23, 42, 0.9), #020617 70%);
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero, .contact {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        padding: 1.6rem 1.2rem 2.2rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      main {
+        padding-inline: 1rem;
+      }
+      .hero {
+        margin-bottom: 2.4rem;
+      }
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container" style="padding-inline:0">
-      <div class="logo">MindFlux Diagnostics</div>
-      <div class="tagline">Remote EEG Interpretation</div>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-mark">
+          <div class="logo-wave"></div>
+        </div>
+        <div>
+          <div class="logo-text-main">MindFlux Diagnostics</div>
+          <div class="logo-text-sub">Remote EEG Interpretation</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#workflow">How It Works</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="nav-cta">Request Coverage</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero container">
-      <h1>Expert <span class="highlight">remote EEG reading</span> for hospitals and neurology groups.</h1>
-      <p>
-        MindFlux Diagnostics provides board-certified EEG interpretation and epilepsy expertise for
-        routine, prolonged, and ICU EEG studies&mdash;delivered remotely, with clear and clinically
-        focused reports.
-      </p>
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <div class="hero-kicker">Board-Certified Epileptology • Remote EEG Reading</div>
+        <h1 class="hero-title">
+          Expert <span class="hero-highlight">EEG Interpretation</span><br />
+          when your team needs it most.
+        </h1>
+        <p class="hero-subtitle">
+          MindFlux Diagnostics provides subspecialty-level, remote EEG interpretation for hospitals, epilepsy centers, and neurology practices that need reliable coverage without adding full-time FTEs.
+        </p>
 
-      <div class="btn-row">
-        <a class="btn-primary" href="mailto:contact@mindfluxdiagnostics.com?subject=Remote%20EEG%20Coverage%20Inquiry">
-          Request remote EEG coverage
-        </a>
-        <a class="btn-secondary" href="#services">View services</a>
+        <div class="hero-bullets">
+          <span><span class="dot"></span> Routine, prolonged, and continuous EEG studies</span>
+          <span><span class="dot"></span> Adult & pediatric epilepsy expertise</span>
+          <span><span class="dot"></span> Clear, clinically actionable reports</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="mailto:contact@mindfluxdiagnostics.com?subject=Remote%20EEG%20Coverage%20Inquiry" class="btn-primary">
+            Schedule a brief intro call
+          </a>
+          <a href="#services" class="btn-outline">
+            <span class="btn-outline-dot"></span>
+            View available coverage services
+          </a>
+        </div>
+
+        <div class="hero-contact">
+          Prefer email? Reach us at
+          <a href="mailto:contact@mindfluxdiagnostics.com">contact@mindfluxdiagnostics.com</a>
+        </div>
       </div>
 
-      <div class="pill-list">
-        <span class="pill">Routine &amp; prolonged EEG</span>
-        <span class="pill">Continuous EEG (cEEG)</span>
-        <span class="pill">Adult &amp; pediatric cases</span>
+      <aside class="hero-card" aria-label="Coverage snapshot">
+        <div class="card-label">Remote neurodiagnostics</div>
+        <div class="card-title">EEG coverage snapshot</div>
+        <div class="card-subtitle">
+          Designed for hospitals and practices that need subspecialty EEG support without compromising turnaround time.
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-row">
+            <span class="timeline-label">Routine EEG</span>
+            <span class="timeline-value">&lt; 24 hr turnaround</span>
+          </div>
+          <div class="timeline-row">
+            <span class="timeline-label">Stat / cEEG alerts</span>
+            <span class="timeline-value">Priority workflow</span>
+          </div>
+          <div class="timeline-row">
+            <span class="timeline-label">Report format</span>
+            <span class="timeline-value">Structured, EMR-ready</span>
+          </div>
+        </div>
+
+        <div class="card-label">Clinical focus</div>
+        <div class="tag-row">
+          <span class="tag">Epilepsy surgery evaluation</span>
+          <span class="tag">ICU & NICU monitoring</span>
+          <span class="tag">Outpatient EEG labs</span>
+        </div>
+
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          Currently accepting new remote EEG partnerships
+        </div>
+      </aside>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h2 class="section-heading">EEG interpretation services</h2>
+      <p class="section-sub">
+        Flexible coverage options customized to your volume, acuity mix, and existing neurology team. Start with a pilot phase and scale as needed.
+      </p>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <span class="pill">Routine & prolonged EEG</span>
+          <h3>Outpatient & inpatient routine studies</h3>
+          <p>
+            Interpretation of standard 10–20 EEGs, with or without activation procedures. Reports emphasize clear clinical correlation and practical recommendations for the treating team.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="pill">Continuous EEG (cEEG)</span>
+          <h3>ICU & step-down monitoring</h3>
+          <p>
+            Remote review of continuous EEG for seizure detection, status epilepticus, and encephalopathy. Priority workflows and customizable notification processes can be established with your team.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="pill">Special populations</span>
+          <h3>Pediatric & epilepsy surgery cases</h3>
+          <p>
+            Subspecialty input on complex studies, including pediatric EEGs and presurgical evaluations, with attention to semiology, localization, and next-step recommendations.
+          </p>
+        </article>
       </div>
     </section>
 
-    <section id="services" class="container">
-      <h2>EEG interpretation services</h2>
-      <p class="section-text">
-        Coverage is tailored to your volume and staffing needs. Start with a small pilot and scale if it
-        works well for your team.
+    <div class="divider"></div>
+
+    <!-- How it works -->
+    <section id="workflow">
+      <h2 class="section-heading">How a remote EEG partnership works</h2>
+      <p class="section-sub">
+        We integrate with your existing EEG workflow and EMR as simply as possible. The goal is straightforward: high-quality, timely reports that your clinicians can trust.
       </p>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Routine and prolonged EEG</h3>
-          <p>
-            Interpretation of standard 10–20 EEG recordings in inpatient or outpatient settings, with
-            attention to background, epileptiform activity, and clinical correlation.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Continuous EEG (ICU)</h3>
-          <p>
-            Remote review of continuous EEG monitoring for seizure detection, status epilepticus, and
-            encephalopathy in critically ill patients.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Complex &amp; pediatric cases</h3>
-          <p>
-            Subspecialty interpretation for pediatric EEG and complex epilepsy cases, including seizure
-            localization and presurgical evaluation support.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="container">
-      <h2>How a remote EEG partnership works</h2>
-      <p class="section-text">
-        The goal is to plug into your existing EEG workflow with as little friction as possible while
-        maintaining high-quality, clinically useful reports.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>1. Initial discussion</h3>
-          <ul>
-            <li>Review your EEG volume and typical study types.</li>
-            <li>Clarify coverage needs (weekday, weekend, backup).</li>
-            <li>Agree on turnaround times and report format.</li>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>1. Introductory discussion</h3>
+          <ul class="list">
+            <li>Review your EEG volume, typical study types, and desired turnaround times.</li>
+            <li>Clarify coverage needs (weekday, weekend, backup, or niche subspecialty support).</li>
+            <li>Align on reporting format and communication preferences.</li>
           </ul>
-        </div>
-        <div class="card">
+        </article>
+
+        <article class="card">
           <h3>2. Technical setup</h3>
-          <ul>
-            <li>Secure remote access to your EEG system (VPN or cloud viewer).</li>
-            <li>Define how finalized reports return to your EMR or reading workflow.</li>
-            <li>Set expectations for stat or urgent studies.</li>
+          <ul class="list">
+            <li>Secure remote access to your EEG platform (e.g., VPN, cloud-based viewer).</li>
+            <li>Confirm how finalized reports are transmitted back (EMR, fax, secure messaging).</li>
+            <li>Define stat / urgent notification pathway if needed.</li>
           </ul>
-        </div>
-        <div class="card">
-          <h3>3. Pilot period</h3>
-          <ul>
-            <li>Start with a small group of studies.</li>
-            <li>Gather feedback from neurologists and ICU teams.</li>
-            <li>Adjust language or structure to match your preferences.</li>
+        </article>
+
+        <article class="card">
+          <h3>3. Pilot phase</h3>
+          <ul class="list">
+            <li>Start with a defined set of routine and/or cEEG studies.</li>
+            <li>Collect feedback from your neurology and ICU teams.</li>
+            <li>Adjust language, structure, and thresholds based on real-world use.</li>
           </ul>
-        </div>
-        <div class="card">
+        </article>
+
+        <article class="card">
           <h3>4. Ongoing coverage</h3>
-          <ul>
-            <li>Scale coverage based on your clinical needs.</li>
-            <li>Periodic review of quality and communication.</li>
-            <li>Flexibility to adapt as your program grows.</li>
+          <ul class="list">
+            <li>Consistent interpretation workflows once your team is comfortable with the process.</li>
+            <li>Periodic review of cases and quality metrics.</li>
+            <li>Flexible scaling up or down depending on volume and staffing changes.</li>
           </ul>
-        </div>
+        </article>
       </div>
     </section>
 
-    <section class="container" id="contact">
-      <h2>Contact</h2>
-      <p class="section-text">
-        If your hospital, EEG lab, or neurology practice is exploring remote EEG interpretation, you can
-        reach out directly by email with a brief overview of your needs.
+    <div class="divider"></div>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-heading">Start a conversation</h2>
+      <p class="section-sub">
+        If your hospital, EEG lab, or neurology group is exploring remote EEG coverage, we’re happy to review your current workflow and discuss whether a partnership makes sense.
       </p>
 
-      <p><strong>Email:</strong>
-        <a href="mailto:contact@mindfluxdiagnostics.com">contact@mindfluxdiagnostics.com</a>
-      </p>
+      <div class="contact">
+        <div class="contact-box">
+          <div class="contact-label">Email</div>
+          <div class="contact-email">
+            <a href="mailto:contact@mindfluxdiagnostics.com">contact@mindfluxdiagnostics.com</a>
+          </div>
+          <p class="contact-note">
+            Please include basic details such as:
+          </p>
+          <ul class="contact-list">
+            <li>Your institution or practice name</li>
+            <li>Estimated monthly EEG volume (routine, prolonged, cEEG)</li>
+            <li>Adult, pediatric, or mixed population</li>
+            <li>Desired turnaround times and coverage windows</li>
+          </ul>
+          <p class="contact-note">
+            We will respond with a brief list of clarifying questions and propose times for a short introductory call.
+          </p>
+        </div>
 
-      <p class="section-text" style="margin-top:0.6rem;">
-        Helpful details to include:
-      </p>
-      <ul>
-        <li>Institution or practice name</li>
-        <li>Approximate EEG volume (routine, cEEG, pediatric)</li>
-        <li>Desired turnaround times</li>
-        <li>Whether you need weekday, weekend, or backup coverage</li>
-      </ul>
+        <div class="card">
+          <h3>Clinical emphasis</h3>
+          <p>
+            Remote EEG interpretation is not just about reading waveforms—it is about helping your team make timely, informed decisions for patients with seizures, encephalopathy, and unexplained events.
+          </p>
+          <p style="margin-top: 0.6rem;">
+            MindFlux Diagnostics is led by an epilepsy-trained neurologist with extensive experience in EEG monitoring, epilepsy surgery evaluations, and ICU EEG for critically ill patients.
+          </p>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    © <span id="year"></span> MindFlux Diagnostics. Remote EEG interpretation services.
+    <div>© <span id="year"></span> MindFlux Diagnostics. All rights reserved.</div>
+    <div style="margin-top: 0.3rem;">
+      This site provides information about professional EEG interpretation services and is not a substitute for direct medical care.
+    </div>
   </footer>
 
   <script>
