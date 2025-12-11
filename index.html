@@ -4,15 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MindFlux Diagnostics | Remote EEG Interpretation</title>
-  <meta name="description" content="MindFlux Diagnostics provides remote EEG interpretation by epilepsy board-certified epileptologists from top U.S. institutions, covering neonatal, pediatric, adult, and intracranial EEG studies.">
+  <meta name="description" content="MindFlux Diagnostics provides remote EEG interpretation by epilepsy board-certified epileptologists from top U.S. institutions. Neonatal, pediatric, adult, continuous and intracranial EEG studies.">
   <style>
     :root {
-      --navy: #123555;
-      --navy-dark: #0b2236;
-      --bg: #f3f4f6;
-      --text: #111827;
-      --muted: #4b5563;
-      --accent: #0f766e;
+      --bg: #050816;
+      --bg-alt: #0d1220;
+      --accent: #14b8a6;
+      --accent-soft: rgba(20, 184, 166, 0.1);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --card-bg: #0b1020;
     }
 
     * {
@@ -23,7 +25,7 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
       color: var(--text);
       line-height: 1.6;
     }
@@ -34,463 +36,104 @@
     }
 
     header {
-      background: white;
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 50;
+      background: linear-gradient(to right, rgba(2, 6, 23, 0.9), rgba(15, 23, 42, 0.9));
     }
 
-    .container {
-      max-width: 980px;
+    .nav {
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 1.1rem 1.25rem;
-    }
-
-    .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      padding: 0.75rem 1.25rem;
     }
 
-    .logo-wrap {
+    .logo {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.7rem;
     }
 
-    .logo-wrap img {
-      max-height: 52px;
-      height: auto;
+    .logo img {
+      height: 40px;
       width: auto;
       display: block;
     }
 
-    .logo-text-small {
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+    .logo-text-main {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
       color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
-      font-size: 0.9rem;
+      gap: 1.2rem;
+      font-size: 0.85rem;
       color: var(--muted);
     }
 
     .nav-links a:hover {
-      color: var(--navy);
+      color: var(--accent);
     }
 
-    .btn-header {
-      padding: 0.45rem 0.9rem;
+    .nav-cta {
+      padding: 0.4rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid var(--navy);
-      color: white;
-      background: var(--navy);
+      border: 1px solid rgba(20, 184, 166, 0.6);
       font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(15, 23, 42, 0.6);
     }
 
     main {
-      padding-bottom: 3rem;
-    }
-
-    .hero {
-      background: white;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .hero-inner {
-      max-width: 980px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 2.5rem 1.25rem 2.75rem;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    /* Hero */
+    .hero {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 2rem;
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: 2.5rem;
       align-items: center;
+      padding: 2rem 1.25rem 3rem;
+      border-radius: 1.75rem;
+      background: radial-gradient(circle at top left, rgba(20, 184, 166, 0.06), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.15), #020617 80%);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+      margin-bottom: 3rem;
     }
 
     .hero-kicker {
       font-size: 0.78rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
     }
 
     .hero-title {
       font-size: clamp(2rem, 4vw, 2.6rem);
-      line-height: 1.2;
-      margin-bottom: 0.8rem;
-      color: var(--navy-dark);
+      font-weight: 650;
+      margin-bottom: 0.75rem;
     }
 
-    .hero-title span {
-      color: var(--accent);
-    }
-
-    .hero-subtitle {
-      color: var(--muted);
-      font-size: 0.98rem;
-      max-width: 32rem;
-      margin-bottom: 1.3rem;
-    }
-
-    .hero-badge {
-      background: #ecfdf3;
-      border-radius: 999px;
-      padding: 0.35rem 0.8rem;
-      font-size: 0.8rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: #166534;
-      margin-bottom: 0.8rem;
-    }
-
-    .hero-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .btn-primary {
-      background: var(--navy);
-      color: white;
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-secondary {
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 0.65rem 1.2rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      background: white;
-      cursor: pointer;
-    }
-
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .pill {
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
-    }
-
-    .hero-card {
-      padding: 1.4rem 1.3rem;
-      background: #eff6ff;
-      border-radius: 1rem;
-      border: 1px solid #bfdbfe;
-      font-size: 0.88rem;
-      color: #1e3a8a;
-    }
-
-    .hero-card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-card ul {
-      margin-left: 1.1rem;
-      margin-top: 0.4rem;
-    }
-
-    section {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 2.3rem 1.25rem 0;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      color: var(--navy-dark);
-      margin-bottom: 0.4rem;
-    }
-
-    .section-text {
-      color: var(--muted);
-      font-size: 0.96rem;
-      max-width: 44rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 0.9rem;
-      border: 1px solid #e5e7eb;
-      padding: 1rem 1.1rem 1.2rem;
-      font-size: 0.9rem;
-    }
-
-    .card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-      color: var(--navy-dark);
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .card ul {
-      margin-left: 1.1rem;
-      margin-top: 0.3rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .contact-block {
-      background: white;
-      border-radius: 0.9rem;
-      border: 1px solid #e5e7eb;
-      padding: 1.1rem 1.2rem 1.3rem;
-      font-size: 0.9rem;
-      margin-top: 0.8rem;
-    }
-
-    footer {
-      margin-top: 2.5rem;
-      padding: 1.5rem 1.25rem 2rem;
-      border-top: 1px solid #e5e7eb;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #6b7280;
-      background: white;
-    }
-
-    @media (max-width: 800px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
-
-      .header-inner {
-        justify-content: space-between;
-      }
-
-      .hero-inner {
-        padding-top: 1.8rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <div class="logo-wrap">
-          <!-- Make sure this filename matches the logo you uploaded -->
-          <img src="logo-mindflux.png" alt="MindFlux Diagnostics logo">
-          <div>
-            <div class="logo-text-small">Remote EEG Interpretation</div>
-          </div>
-        </div>
-        <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#expertise">Clinical expertise</a>
-          <a href="#contact">Contact</a>
-          <a class="btn-header" href="mailto:contact@mindfluxdiagnostics.com?subject=Remote%20EEG%20Coverage%20Inquiry">
-            Request coverage
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <div class="hero-kicker">Epilepsy subspecialty EEG interpretation</div>
-          <h1 class="hero-title">
-            Remote EEG reading by
-            <span>epilepsy board-certified epileptologists.</span>
-          </h1>
-
-          <div class="hero-badge">
-            <span class="hero-badge-dot"></span>
-            Only epilepsy board-certified epileptologists from top U.S. institutions
-          </div>
-
-          <p class="hero-subtitle">
-            MindFlux Diagnostics partners with hospitals and neurology practices to provide high-quality
-            interpretation of neonatal, pediatric, adult, and intracranial EEG studies&mdash;delivered
-            remotely with clear, clinically actionable reports.
-          </p>
-
-          <div class="btn-row">
-            <a class="btn-primary" href="mailto:contact@mindfluxdiagnostics.com?subject=Remote%20EEG%20Coverage%20Inquiry">
-              Schedule a brief intro call
-            </a>
-            <a class="btn-secondary" href="#services">View interpretation services</a>
-          </div>
-
-          <div class="pill-list">
-            <span class="pill">Neonatal EEG</span>
-            <span class="pill">Pediatric EEG</span>
-            <span class="pill">Adult EEG</span>
-            <span class="pill">Continuous EEG (cEEG)</span>
-            <span class="pill">Intracranial EEG</span>
-          </div>
-        </div>
-
-        <aside class="hero-card">
-          <h3>Who reads your EEGs?</h3>
-          <p>
-            Every study is interpreted by an epilepsy fellowship-trained, epilepsy board-certified
-            epileptologist with experience at leading U.S. academic centers.
-          </p>
-          <ul>
-            <li>Neonatal, pediatric, and adult EEG</li>
-            <li>ICU continuous EEG monitoring</li>
-            <li>Intracranial EEG and presurgical evaluations</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <h2>EEG interpretation services</h2>
-      <p class="section-text">
-        We provide flexible remote interpretation coverage that can complement your existing neurology
-        staff or fully support EEG services where in-house expertise is limited.
-      </p>
-
-      <div class="grid">
-        <article class="card">
-          <h3>Neonatal &amp; pediatric EEG</h3>
-          <p>
-            Interpretation of neonatal and pediatric EEG recordings, including seizure detection,
-            encephalopathy assessment, and age-appropriate background analysis.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Adult &amp; ICU continuous EEG</h3>
-          <p>
-            Routine, prolonged, and continuous EEG studies for adult patients in ward or ICU settings,
-            with attention to non-convulsive seizures, status epilepticus, and encephalopathy patterns.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Intracranial EEG &amp; complex cases</h3>
-          <p>
-            Support for intracranial EEG monitoring and difficult-to-localize epilepsy, including
-            correlation with clinical semiology and presurgical planning when needed.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- EXPERTISE -->
-    <section id="expertise">
-      <h2>Clinical expertise</h2>
-      <p class="section-text">
-        MindFlux Diagnostics is built around subspecialty EEG interpretation. All readers are:
-      </p>
-
-      <div class="grid">
-        <article class="card">
-          <h3>Epilepsy board-certified</h3>
-          <ul>
-            <li>Epilepsy fellowship-trained neurologists</li>
-            <li>Board-certified in epilepsy in addition to neurology</li>
-            <li>Experience in high-volume academic epilepsy centers</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Comfortable across the lifespan</h3>
-          <ul>
-            <li>Neonatal and pediatric EEG</li>
-            <li>Adult inpatient and outpatient studies</li>
-            <li>Continuous EEG in ICU environments</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Advanced epilepsy care</h3>
-          <ul>
-            <li>Intracranial EEG interpretation</li>
-            <li>Epilepsy surgery evaluation support</li>
-            <li>Collaboration with your existing epilepsy team</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <h2>Start a conversation</h2>
-      <p class="section-text">
-        If your hospital, EEG lab, or neurology group is exploring remote EEG coverage, we can review
-        your current workflow and help determine whether a partnership with MindFlux Diagnostics is a
-        good fit.
-      </p>
-
-      <div class="contact-block">
-        <p><strong>Email:</strong>
-          <a href="mailto:contact@mindfluxdiagnostics.com">contact@mindfluxdiagnostics.com</a>
-        </p>
-        <p style="margin-top:0.6rem;">
-          Including the following details in your initial message is helpful:
-        </p>
-        <ul>
-          <li>Institution or practice name and location</li>
-          <li>Approximate monthly EEG volume (neonatal, pediatric, adult, cEEG, intracranial)</li>
-          <li>Desired turnaround times and coverage windows (weekday/weekend, daytime/overnight)</li>
-          <li>Whether you already have in-house epileptology support</li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © <span id="year"></span> MindFlux Diagnostics. Remote EEG interpretation by epilepsy board-certified epileptologists.
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+    .hero-highlight {
+      background: linear-gradient(to right, #a5b4fc, #22c1c3);
+      -webkit-background-clip: text;
+      bac
