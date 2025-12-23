@@ -4,27 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MindFlux Diagnostics | Remote EEG Interpretation</title>
-  <meta name="description" content="Remote EEG interpretation by epilepsy board-certified epileptologists at top U.S. academic institutions. Neonatal, pediatric, adult and continuous EEG." />
+
+  <meta name="description"
+        content="Remote EEG interpretation by epilepsy board-certified epileptologists at top U.S. academic institutions. Neonatal, pediatric, adult, and continuous EEG services." />
 
   <style>
-
-    @media (max-width: 600px) {
-  .logo img {
-    height: 52px;
-  }
-
-  .logo span {
-    font-size: 0.95rem;
-  }
-}
     :root {
       --bg-main: linear-gradient(180deg, #0f172a 0%, #020617 100%);
-      --bg-card: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.08);
+      --bg-card: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.1);
       --text: #e5e7eb;
       --muted: #9ca3af;
       --accent: #38bdf8;
-      --accent-soft: rgba(56,189,248,0.15);
+      --accent-soft: rgba(56,189,248,0.18);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,11 +31,11 @@
     a { color: inherit; text-decoration: none; }
 
     header {
-      border-bottom: 1px solid var(--border);
-      background: rgba(2,6,23,0.9);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
+      background: rgba(2,6,23,0.95);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav {
@@ -51,21 +43,19 @@
       margin: auto;
       padding: 0.9rem 1.2rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
-    .logo {
-      font-weight: 650;
-      letter-spacing: 0.04em;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+    .logo img {
+      height: 72px;
+      width: auto;
+      filter: drop-shadow(0 0 16px rgba(56,189,248,0.45));
     }
 
     .nav-links {
       display: flex;
-      gap: 1.2rem;
+      gap: 1.3rem;
       font-size: 0.85rem;
       color: var(--muted);
     }
@@ -75,72 +65,67 @@
     main {
       max-width: 1100px;
       margin: auto;
-      padding: 2.5rem 1.2rem 3rem;
+      padding: 2.8rem 1.2rem 3.2rem;
     }
 
+    /* HERO */
     .hero {
-      background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(15,23,42,0.9));
+      background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(15,23,42,0.95));
       border: 1px solid var(--border);
-      border-radius: 1.5rem;
-      padding: 2.5rem;
-      margin-bottom: 2.2rem;
+      border-radius: 1.6rem;
+      padding: 2.8rem;
+      margin-bottom: 2.6rem;
     }
 
     .badge {
       display: inline-block;
-      padding: 0.3rem 0.7rem;
+      padding: 0.32rem 0.8rem;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent);
       font-size: 0.8rem;
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-size: clamp(2rem, 4vw, 2.7rem);
       line-height: 1.2;
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
     }
 
     .hero p {
-      max-width: 44rem;
+      max-width: 48rem;
       color: var(--muted);
-      margin-bottom: 1rem;
       font-size: 0.98rem;
+      margin-bottom: 0.9rem;
     }
 
     .btn-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.72rem 1.4rem;
+      padding: 0.75rem 1.6rem;
       border-radius: 999px;
       background: var(--accent);
       color: #020617;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
     .btn-secondary {
-      display: inline-block;
-      padding: 0.7rem 1.25rem;
+      padding: 0.7rem 1.4rem;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      color: var(--text);
-      font-weight: 500;
+      background: rgba(255,255,255,0.03);
       font-size: 0.9rem;
     }
 
-    section {
-      margin-top: 2.2rem;
-      margin-bottom: 2.2rem;
-    }
+    section { margin-top: 2.6rem; }
 
     h2 {
       font-size: 1.35rem;
@@ -148,28 +133,28 @@
     }
 
     .section-text {
+      max-width: 54rem;
       color: var(--muted);
-      max-width: 52rem;
-      margin-bottom: 1.2rem;
       font-size: 0.96rem;
+      margin-bottom: 1.3rem;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
+      gap: 1.1rem;
     }
 
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.2rem;
+      border-radius: 1.1rem;
+      padding: 1.3rem;
       font-size: 0.92rem;
     }
 
     .card h3 {
-      font-size: 1rem;
+      font-size: 1.02rem;
       margin-bottom: 0.45rem;
     }
 
@@ -186,51 +171,38 @@
     }
 
     .callout {
-      margin-top: 1rem;
-      padding: 1rem 1.1rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(56,189,248,0.25);
-      background: rgba(56,189,248,0.06);
-      color: var(--text);
-      font-size: 0.92rem;
+      margin-top: 1.4rem;
+      padding: 1.2rem;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(56,189,248,0.35);
+      background: rgba(56,189,248,0.08);
+      font-size: 0.95rem;
     }
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 1.5rem;
+      padding: 1.6rem;
       text-align: center;
       font-size: 0.75rem;
       color: var(--muted);
-      margin-top: 2.5rem;
+      margin-top: 3rem;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 720px) {
       .nav-links { display: none; }
-      .hero { padding: 2rem 1.5rem; }
+      .logo img { height: 56px; }
+      .hero { padding: 2.2rem 1.6rem; }
     }
   </style>
 </head>
 
 <body>
+
 <header>
   <div class="nav">
-<div class="logo" style="display:flex; align-items:center; gap:1rem;">
-  <img src="logo.png"
-       alt="MindFlux Diagnostics logo"
-       style="
-         height:64px;
-         width:auto;
-         filter: drop-shadow(0 0 14px rgba(56,189,248,0.45));
-       " />
-  <span style="
-    font-weight:700;
-    letter-spacing:0.06em;
-    font-size:1.05rem;
-  ">
-    MindFlux Diagnostics
-  </span>
-</div>
-    
+    <div class="logo">
+      <img src="logo.png" alt="MindFlux Diagnostics logo">
+    </div>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#benefits">Why remote EEG?</a>
@@ -241,161 +213,185 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="badge">Remote EEG Interpretation</div>
-    <h1>Expert EEG interpretation—reliably, remotely, and clinically focused.</h1>
-    <p>
-      MindFlux Diagnostics provides remote EEG reading by <strong>epilepsy board-certified epileptologists
-      from top U.S. academic institutions</strong>, supporting hospitals and neurology practices with
-      timely, high-quality reports.
-    </p>
-    <p>
-      We interpret neonatal, pediatric, adult, and continuous EEG studies with a focus on clarity,
-      communication, and real-world clinical decision making.
-    </p>
 
-<a class="btn"
-   href="https://calendly.com/erkam342/30min"
-   target="_blank"
-   rel="noopener">
-  Schedule a brief intro call
-</a>
+<section class="hero">
+  <div class="badge">Remote EEG Interpretation</div>
 
-  <section id="services">
-    <h2>EEG interpretation services</h2>
-    <p class="section-text">
-      Flexible remote coverage designed to integrate smoothly with your existing EEG workflow.
-    </p>
+  <h1>High-quality EEG interpretation, delivered remotely.</h1>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Neonatal & pediatric EEG</h3>
-        <p>
-          Age-appropriate interpretation for NICU and pediatric EEG studies, including seizure detection
-          and encephalopathy assessment.
-        </p>
-      </div>
+  <p>
+    MindFlux Diagnostics provides remote EEG interpretation by
+    <strong>epilepsy board-certified epileptologists from top U.S. academic institutions</strong>,
+    supporting hospitals and neurology practices with timely, clinically focused reports.
+  </p>
 
-      <div class="card">
-        <h3>Adult routine & continuous EEG</h3>
-        <p>
-          Routine, prolonged, and continuous EEG interpretation for adult inpatient and outpatient
-          settings, including ICU monitoring.
-        </p>
-      </div>
+  <p>
+    We interpret neonatal, pediatric, adult, and continuous EEG studies with an emphasis on clarity,
+    communication, and real-world inpatient decision making.
+  </p>
 
-      <div class="card">
-        <h3>Operational support</h3>
-        <p>
-          Clear, structured, EMR-ready reporting and defined communication pathways for urgent studies
-          (when required by your workflow).
-        </p>
-      </div>
-    </div>
-  </section>
+  <div class="btn-row">
+    <a class="btn"
+       href="https://calendly.com/erkam342/30min"
+       target="_blank"
+       rel="noopener">
+      Schedule a brief intro call
+    </a>
 
-  <section id="benefits">
-    <h2>Why remote EEG matters</h2>
-    <p class="section-text">
-      Seizures and epileptiform activity are common in hospitalized patients—especially in the ICU—and can be
-      difficult to recognize clinically. EEG monitoring helps teams detect seizures (including nonconvulsive events),
-      clarify encephalopathy patterns, and guide treatment decisions.
-    </p>
+    <a class="btn-secondary" href="#benefits">
+      Why remote EEG?
+    </a>
+  </div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Supports higher-level inpatient care</h3>
-        <p>
-          Access to EEG expertise strengthens hospital-level neurology care by enabling timely diagnosis and
-          management—without needing to transfer patients solely for EEG interpretation availability.
-        </p>
-        <ul class="list">
-          <li>Improves access to specialized interpretation</li>
-          <li>Enables consistent coverage during staffing gaps</li>
-          <li>Helps standardize reporting and communication</li>
-        </ul>
-      </div>
+  <p style="margin-top:0.7rem; color:#9ca3af; font-size:0.85rem;">
+    30-minute introductory call to review EEG volume, coverage needs, and workflow.
+  </p>
+</section>
 
-      <div class="card">
-        <h3>Helps prevent unnecessary transfers</h3>
-        <p>
-          Remote interpretation can help centers provide advanced EEG monitoring locally, keeping patients closer to
-          home and reducing delays that occur when transfers are required for monitoring or interpretation capacity.
-        </p>
-        <ul class="list">
-          <li>Maintains continuity for families and referring clinicians</li>
-          <li>Reduces transfer-related delays and costs</li>
-          <li>Supports ICU/NICU decision making in real time</li>
-        </ul>
-      </div>
+<section id="services">
+  <h2>EEG interpretation services</h2>
+  <p class="section-text">
+    Flexible remote coverage designed to integrate smoothly with your existing EEG workflow.
+  </p>
 
-      <div class="card">
-        <h3>Clinically actionable results</h3>
-        <p>
-          EEG interpretation is most valuable when it’s clear and relevant to management. We emphasize structured
-          impressions, correlation with clinical context, and practical recommendations aligned with your team’s needs.
-        </p>
-        <ul class="list">
-          <li>Seizure and status epilepticus detection</li>
-          <li>Encephalopathy characterization</li>
-          <li>Medication stewardship and escalation decisions</li>
-        </ul>
-      </div>
+  <div class="grid">
+    <div class="card">
+      <h3>Neonatal & pediatric EEG</h3>
+      <p>
+        Age-appropriate EEG interpretation for NICU and pediatric settings, including seizure detection
+        and encephalopathy assessment.
+      </p>
     </div>
 
-    <div class="callout">
-      <strong>In short:</strong> Remote EEG interpretation expands access to expert neurophysiology, strengthens local
-      hospital capability, and can reduce transfers that are driven primarily by limited EEG coverage.
+    <div class="card">
+      <h3>Adult routine & continuous EEG</h3>
+      <p>
+        Routine, prolonged, and continuous EEG interpretation for adult inpatient and outpatient care,
+        including ICU monitoring.
+      </p>
     </div>
-  </section>
 
-  <section id="expertise">
-    <h2>Clinical expertise</h2>
-    <p class="section-text">
-      All EEG studies are interpreted exclusively by <strong>epilepsy board-certified epileptologists at top U.S.
-      academic institutions</strong>.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Board certification & subspecialty training</h3>
-        <p>
-          Fellowship-trained epileptologists with extensive experience in academic epilepsy centers.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Across the lifespan</h3>
-        <p>
-          Comfortable interpreting neonatal, pediatric, and adult EEG studies, including continuous EEG
-          in ICU environments.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Workflow-friendly reporting</h3>
-        <p>
-          Clear, consistent reporting designed to integrate with your clinical workflow and documentation needs.
-        </p>
-      </div>
+    <div class="card">
+      <h3>Operational support</h3>
+      <p>
+        Clear, structured, EMR-ready reporting with defined communication pathways for urgent studies.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p class="section-text">
-      For EEG coverage inquiries, please email us with a brief overview of your needs (volume, patient population,
-      and desired turnaround time).
-    </p>
-    <p>
-      <strong>Email:</strong>
-      <a href="mailto:contact@mindfluxdiagnostics.com">contact@mindfluxdiagnostics.com</a>
-    </p>
-  </section>
+<section id="benefits">
+  <h2>Why remote EEG matters</h2>
+  <p class="section-text">
+    Seizures and epileptiform activity are common in hospitalized and critically ill patients, and many
+    events are clinically subtle or nonconvulsive. EEG monitoring helps teams detect seizures, characterize
+    encephalopathy, and guide timely treatment decisions.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Supports higher-level inpatient care</h3>
+      <p>
+        Remote EEG interpretation expands access to subspecialty expertise, enabling hospitals to deliver
+        higher-level neurological care even when local staffing is limited.
+      </p>
+      <ul class="list">
+        <li>Improved access to epilepsy expertise</li>
+        <li>Consistent coverage across shifts</li>
+        <li>Standardized, high-quality reporting</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Helps prevent unnecessary transfers</h3>
+      <p>
+        By supporting advanced EEG interpretation locally, hospitals can often avoid transfers driven
+        primarily by limited EEG availability, keeping patients closer to home.
+      </p>
+      <ul class="list">
+        <li>Reduced transfer delays and costs</li>
+        <li>Improved continuity for patients and families</li>
+        <li>Stronger ICU and NICU decision support</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Clinically actionable results</h3>
+      <p>
+        Our reports emphasize clarity, clinical correlation, and relevance to management—supporting
+        medication decisions and escalation when needed.
+      </p>
+      <ul class="list">
+        <li>Seizure and status epilepticus detection</li>
+        <li>Encephalopathy characterization</li>
+        <li>Treatment guidance aligned with context</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Bottom line:</strong> Remote EEG interpretation strengthens local hospital capability,
+    improves access to subspecialty care, and can help prevent transfers that are driven primarily by
+    EEG coverage limitations.
+  </div>
+</section>
+
+<section id="expertise">
+  <h2>Clinical expertise</h2>
+  <p class="section-text">
+    All EEG studies are interpreted exclusively by
+    <strong>epilepsy board-certified epileptologists at top U.S. academic institutions</strong>.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Subspecialty training</h3>
+      <p>
+        Fellowship-trained epileptologists with extensive experience in academic epilepsy centers.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Across the lifespan</h3>
+      <p>
+        Expertise in neonatal, pediatric, and adult EEG interpretation, including continuous EEG
+        in ICU environments.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Workflow-friendly approach</h3>
+      <p>
+        Clear communication, consistent formatting, and reports designed to integrate seamlessly
+        into your clinical workflow.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p class="section-text">
+    For EEG coverage inquiries, please email us or schedule a brief introductory call.
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <a href="mailto:contact@mindfluxdiagnostics.com">contact@mindfluxdiagnostics.com</a>
+  </p>
+
+  <p style="margin-top:0.6rem;">
+    <strong>Schedule:</strong>
+    <a href="https://calendly.com/erkam342/30min" target="_blank">
+      Book a 30-minute introductory call
+    </a>
+  </p>
+</section>
+
 </main>
 
 <footer>
-  © <span id="year"></span> MindFlux Diagnostics. This site provides information about professional EEG interpretation services.
+  © <span id="year"></span> MindFlux Diagnostics
 </footer>
 
 <script>
