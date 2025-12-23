@@ -7,6 +7,16 @@
   <meta name="description" content="Remote EEG interpretation by epilepsy board-certified epileptologists at top U.S. academic institutions. Neonatal, pediatric, adult and continuous EEG." />
 
   <style>
+
+    @media (max-width: 600px) {
+  .logo img {
+    height: 52px;
+  }
+
+  .logo span {
+    font-size: 0.95rem;
+  }
+}
     :root {
       --bg-main: linear-gradient(180deg, #0f172a 0%, #020617 100%);
       --bg-card: rgba(255,255,255,0.04);
@@ -204,14 +214,23 @@
 <body>
 <header>
   <div class="nav">
-    <div class="logo" style="display:flex; align-items:center; gap:0.7rem;">
+<div class="logo" style="display:flex; align-items:center; gap:1rem;">
   <img src="logo.png"
        alt="MindFlux Diagnostics logo"
-       style="height:42px; width:auto;" />
-  <span style="font-weight:650; letter-spacing:0.04em;">
+       style="
+         height:64px;
+         width:auto;
+         filter: drop-shadow(0 0 14px rgba(56,189,248,0.45));
+       " />
+  <span style="
+    font-weight:700;
+    letter-spacing:0.06em;
+    font-size:1.05rem;
+  ">
     MindFlux Diagnostics
   </span>
 </div>
+    
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#benefits">Why remote EEG?</a>
