@@ -20,6 +20,10 @@
 
   a { color: inherit; text-decoration: none; }
 
+  /* FAILSAFE: prevents white-on-white */
+html, body { background: #fff !important; color: #0f172a !important; }
+p, li, a, .section-text, .nav-links, footer { color: #475569 !important; }
+
   /* ================= HEADER ================= */
   header {
     position: sticky;
